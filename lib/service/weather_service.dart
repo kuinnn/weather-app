@@ -23,13 +23,12 @@ Future<Weather> getWeather(String cityName) async {
 }
 
 Future<String> getCurrentCity() async {
-
   // get permission from user
   LocationPermission permission = await Geolocator.checkPermission();
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
   }
-}
+
 
 // fetch the current location
 Position position = await Geolocator.getCurrentPosition(
@@ -43,4 +42,5 @@ await placemarkFromCoordinates(position.latitude, position.longitude);
 String? city = placemarks[0].locality;
 
 return city ?? "";
+  }
 }
